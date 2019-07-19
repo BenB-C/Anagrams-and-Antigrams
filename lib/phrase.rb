@@ -1,20 +1,20 @@
+require 'json'
+
 class Phrase
   attr_reader(:words, :is_valid, :letter_frequencies)
 
-  @@dictionary = File.readlines('words.txt').map { |line| line.strip }
-  # binding.pry
-  # puts @@dictionary
+  @@dictionary_array = File.readlines('words.txt').map { |line| line.strip }
+  @@dictionary_hash = JSON.parse(File.read('words_dictionary.json'))
+
   def initialize(text)
     @text = text.downcase.gsub(/[^a-z0-9 ]/, '')
     @words = @text.split(' ')
     @is_valid = true
-    @words.each { |word|
-      if !@@dictionary.include?(word) then
-        if !(word[word.length - 1] == 's' && @@dictionary.include?(word[0,word.length - 1]))
-          @is_valid = false
-        end
+    @words.each do |word|
+      if !@@dictionary_array.include?(word) & !@@dictionary_hash[word] then
+        @is_valid = false
       end
-    }
+    end
     @text.gsub!(/ /, '')
     @letter_frequencies = Hash.new { |hash, key| hash[key] = 0 }
     @text.each_char { |letter| @letter_frequencies[letter] += 1 }

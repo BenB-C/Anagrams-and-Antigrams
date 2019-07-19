@@ -33,7 +33,7 @@ A ruby program for checking if two words or phrases are anagrams or 'antigrams' 
 
 ## Known Bugs
 
-The words.txt file used for checking if words are valid does not contain the plural form of many words. If the plural form of a word in an inputted phrase is not just the singular form followed by an 's', the program may find the phrase invalid.
+There are no known bugs at this time.
 
 ## Support and contact details
 
@@ -41,7 +41,10 @@ If you find a bug, run into any issues, or have questions, ideas or concerns ple
 
 ## Technologies Used
 
-* ruby (gems: rspec, pry, colorize; methods: File.readlines) 
+* ruby
+  * custom classes, attr_reader methods, class variables
+  * notable core classes: Hash, File
+  * gems: rspec, pry, colorize, json
 
 ### License
 
