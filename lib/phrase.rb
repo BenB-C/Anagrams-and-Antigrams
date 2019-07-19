@@ -1,20 +1,23 @@
 class Phrase
-  attr_reader(:text, :letter_frequencies, :is_valid, :letters_in_text)
+  attr_reader(:text, :letter_frequencies, :is_valid, :letters_in_text, :has_multiple_words)
 
   def initialize(text)
     @text = text.downcase
     @letter_frequencies = Hash.new { |hash, key| hash[key] = 0 }
     ('a'..'z').each { |letter| @letter_frequencies[letter] }
     @letters_in_text = []
+    @has_multiple_words = false
     @text.split('').each do |letter|
-      @letter_frequencies[letter] += 1
-      if !@letters_in_text.include?(letter)
-        @letters_in_text.push(letter)
+      if (letter.match?(/[a-z0-9]/))
+        @letter_frequencies[letter] += 1
+        if !@letters_in_text.include?(letter)
+          @letters_in_text.push(letter)
+        end
+      elsif letter == ' '
+        @has_multiple_words = true
       end
     end
     letters_in_text.sort!
-    puts "@letters_in_text: #{@letters_in_text}"
-    puts "vowels in text: #{@letters_in_text & ['a', 'e', 'i', 'o', 'u', 'y']}"
     @is_valid = @letters_in_text & ['a', 'e', 'i', 'o', 'u', 'y'] != []
   end
 
@@ -23,16 +26,18 @@ class Phrase
       return "You need to input actual words!"
     end
 
+    descriptor = (@has_multiple_words || otherPhrase.has_multiple_words) ? "phrases" : "words"
+
     if @letters_in_text & otherPhrase.letters_in_text == []
-      return "These words have no letter matches and are antigrams."
+      return "These #{descriptor} have no letter matches and are antigrams."
     end
 
     @letter_frequencies.each do |letter, frequency|
       if frequency != otherPhrase.letter_frequencies[letter]
-        return "These words are not anagrams."
+        return "These #{descriptor} are not anagrams."
       end
     end
 
-    "These words are anagrams."
+    "These #{descriptor} are anagrams."
   end
 end

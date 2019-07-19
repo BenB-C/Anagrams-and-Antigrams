@@ -38,4 +38,28 @@ describe('Phrase#anagram') do
     phrase2 = Phrase.new("bye")
     expect(phrase1.anagram(phrase2)).to(eq("These words have no letter matches and are antigrams."))
   end
+
+  it('Accounts for multiple words being anagrams') do
+    phrase1 = Phrase.new("Dormitory")
+    phrase2 = Phrase.new("Dirty room")
+    expect(phrase1.anagram(phrase2)).to(eq("These phrases are anagrams."))
+  end
+
+  it('Accounts for multiple words being anagrams') do
+    phrase1 = Phrase.new("Voices rant on")
+    phrase2 = Phrase.new("Conversation")
+    expect(phrase1.anagram(phrase2)).to(eq("These phrases are anagrams."))
+  end
+
+  it('Accounts for multiple words being antigrams') do
+    phrase1 = Phrase.new("A cat ate")
+    phrase2 = Phrase.new("My dog")
+    expect(phrase1.anagram(phrase2)).to(eq("These phrases have no letter matches and are antigrams."))
+  end
+
+  it('Rejects multiple words that do not contain vowels or y') do
+    phrase1 = Phrase.new("Drmtr")
+    phrase2 = Phrase.new("Drt rm")
+    expect(phrase1.anagram(phrase2)).to(eq("You need to input actual words!"))
+  end
 end
