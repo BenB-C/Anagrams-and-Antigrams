@@ -47,4 +47,14 @@ class Phrase
       end
     end
   end
+
+  def palindrome?
+    is_panlindrome = true
+    (@text.length / 2).times do |i|
+      if @text[i] != @text[-(i + 1)]
+        is_panlindrome = false
+      end
+    end
+    is_panlindrome
+  end
 end

@@ -17,12 +17,20 @@ response_colors = {
 prompt_color = :cyan
 loop do
   print "\nEnter a word or phrase: ".colorize(prompt_color)
-  phrase1 = Phrase.new(gets.chomp)
+  phrase1_input = gets.chomp
+  phrase1 = Phrase.new(phrase1_input)
   print "Enter another word or phrase: ".colorize(prompt_color)
-  phrase2 = Phrase.new(gets.chomp)
+  phrase2_input = gets.chomp
+  phrase2 = Phrase.new(phrase2_input)
 
   response = phrase1.anagram(phrase2)
   puts response.colorize(response_colors[response])
+  if phrase1.palindrome?
+    puts "#{phrase1_input} is a palindrome!".colorize(:light_green)
+  end
+  if phrase2.palindrome?
+    puts "#{phrase2_input} is a palindrome!".colorize(:light_green)
+  end
 
   print "\nContinue (y/n)? ".colorize(prompt_color)
   break if gets.chomp.downcase != 'y'

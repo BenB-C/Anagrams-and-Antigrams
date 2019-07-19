@@ -75,3 +75,15 @@ describe('Phrase#anagram') do
     expect(phrase1.anagram(phrase2)).to(eq("These phrases aren't anagrams but 13 letters match: a, a, a, a, c, c, e, f, m, t, t, t, y."))
   end
 end
+
+describe('Phrase#palindrome?') do
+  it('returns true when the word is "racecar"') do
+    word = Phrase.new("racecar")
+    expect(word.palindrome?).to(eq(true))
+  end
+
+  it('returns true when the phrase is "A man, a plan, a canal, Panama!"') do
+    phrase = Phrase.new("A man, a plan, a canal, Panama!")
+    expect(phrase.palindrome?).to(eq(true))
+  end
+end
