@@ -1,25 +1,30 @@
 class Phrase
-  attr_reader(:text, :letter_frequencies, :has_multiple_words)
+  attr_reader(:words, :is_valid, :letter_frequencies)
 
+  @@dictionary = File.readlines('words.txt').map { |line| line.strip }
+  # binding.pry
+  # puts @@dictionary
   def initialize(text)
-    @text = text.downcase
-    @letter_frequencies = Hash.new { |hash, key| hash[key] = 0 }
-    @has_multiple_words = false
-    @text.split('').each do |letter|
-      if (letter.match?(/[a-z0-9]/))
-        @letter_frequencies[letter] += 1
-      elsif letter == ' '
-        @has_multiple_words = true
+    @text = text.downcase.gsub(/[^a-z0-9 ]/, '')
+    @words = @text.split(' ')
+    @is_valid = true
+    @words.each { |word|
+      if !@@dictionary.include?(word) then
+        if !(word[word.length - 1] == 's' && @@dictionary.include?(word[0,word.length - 1]))
+          @is_valid = false
+        end
       end
-    end
+    }
+    @text.gsub!(/ /, '')
+    @letter_frequencies = Hash.new { |hash, key| hash[key] = 0 }
+    @text.each_char { |letter| @letter_frequencies[letter] += 1 }
   end
 
   def anagram(otherPhrase)
-    vowelsRegex = /[aeiouy]/
-    if (!text.match?(vowelsRegex)) || (!otherPhrase.text.match?(vowelsRegex))
-      return "You need to input actual words!"
+    if (!is_valid || !otherPhrase.is_valid)
+      "You need to input actual words!"
     else
-      descriptor = (has_multiple_words || otherPhrase.has_multiple_words) ? "phrases" : "words"
+      descriptor = (words.length > 1 || otherPhrase.words.length > 1) ? "phrases" : "words"
       matching_letters = []
       are_anagrams = true
       letter_frequencies.each do |letter, frequency|
