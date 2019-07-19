@@ -6,13 +6,23 @@
 
 ## Description
 
-
+A ruby program for checking if two words or phrases are anagrams or 'antigrams' (taken here to be two words or phrases that do not share any letters, instead of anagrams with opposite meanings).
 
 ## Specs
 
 | Behavior | Input | Output |
 | ------------- |:-------------:| -----:|
-||||
+| Determines when two words are anagrams. | "ruby", "bury" | "These words are anagrams." |
+| Determines when two words are not anagrams. | "dog", "bog" | "These words are not anagrams." |
+| Account for the possibility that words might have different cases but should still be anagrams. | "Tea", "Eat" | "These words are anagrams" |
+| Rejects inputs that do not contain vowels or y. | "twx", "ruby" | "You need to input actual words!" |
+| Rejects inputs that do not contain vowels or y. | "twix", "rpg" | "You need to input actual words!" |
+| If words aren't anagrams, determines whether they are actually antigrams. | "hi", "bye" | "These words have no letter matches and are antigrams." |
+| Accounts for multiple words being anagrams. | "Dormitory", "Dirty room" | "These phrases are anagrams." |
+| Accounts for multiple words being anagrams. | "Voices rant on", "Conversation" | "These phrases are anagrams." |
+| Accounts for multiple words being antigrams. | "Voices rant on", "" | "These phrases have no letter matches and are antigrams." |
+| Rejects multiple words that do not contain vowels or y. | "Drmtr", "Drt rm" | "You need to input actual words!" |
+
 
 ## Setup/Installation Requirements
 
