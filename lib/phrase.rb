@@ -20,10 +20,10 @@ class Phrase
 
     @letter_frequencies.each do |letter, frequency|
       if frequency != otherPhrase.letter_frequencies[letter]
-        return "These words are not anagrams"
+        return "These words are not anagrams."
       end
     end
 
-    "These words are anagrams"
+    "These words are anagrams."
   end
 end
