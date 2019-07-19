@@ -5,7 +5,7 @@ class Phrase
     @text = text
     @letter_frequencies = Hash.new { |hash, key| hash[key] = 0 }
     ('a'..'z').each { |letter| @letter_frequencies[letter] }
-    text.each_char { |letter| @letter_frequencies[letter] += 1  }
+    text.each_char { |letter| @letter_frequencies[letter.downcase] += 1  }
     puts @letter_frequencies
   end
 
