@@ -28,9 +28,14 @@ describe('Phrase#anagram') do
   end
 
   it('Returns "You need to input actual words!" when object is "twix" and argument is "rpg"') do
-    phrase1 = Phrase.new("twx")
-    phrase2 = Phrase.new("ruby")
+    phrase1 = Phrase.new("twix")
+    phrase2 = Phrase.new("rpg")
     expect(phrase1.anagram(phrase2)).to(eq("You need to input actual words!"))
   end
 
+  it('Returns "These words have no letter matches and are antigrams." when object is "hi" and argument is "bye"') do
+    phrase1 = Phrase.new("hi")
+    phrase2 = Phrase.new("bye")
+    expect(phrase1.anagram(phrase2)).to(eq("These words have no letter matches and are antigrams."))
+  end
 end
