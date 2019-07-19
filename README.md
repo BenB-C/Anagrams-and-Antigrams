@@ -29,7 +29,7 @@ A ruby program for checking if two words or phrases are anagrams or 'antigrams' 
 * Download/clone the repository
 * Open a terminal/command line and navigate to the repo folder.
 * Run the command 'bundle install'
-* Run the command 'ruby anagrams_and_antigrams_script.rb'
+* Run the command 'ruby anagrams_and_antigrams.rb'
 
 ## Known Bugs
 
