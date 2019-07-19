@@ -15,8 +15,8 @@ A ruby program for checking if two words or phrases are anagrams or 'antigrams' 
 | Determines when two words are anagrams. | "ruby", "bury" | "These words are anagrams." |
 | Determines when two words are not anagrams. | "dog", "bog" | "These words are not anagrams." |
 | Account for the possibility that words might have different cases but should still be anagrams. | "Tea", "Eat" | "These words are anagrams" |
-| Rejects inputs that do not contain vowels or y. | "twx", "ruby" | "You need to input actual words!" |
-| Rejects inputs that do not contain vowels or y. | "twix", "rpg" | "You need to input actual words!" |
+| Rejects inputs that are not contained in words.txt. | "twx", "ruby" | "You need to input actual words!" |
+| Rejects inputs that are not contained in words.txt. | "twix", "rpg" | "You need to input actual words!" |
 | If words aren't anagrams, determines whether they are actually antigrams. | "hi", "bye" | "These words have no letter matches and are antigrams." |
 | Accounts for multiple words being anagrams. | "Dormitory", "Dirty room" | "These phrases are anagrams." |
 | Accounts for multiple words being anagrams. | "Voices rant on", "Conversation" | "These phrases are anagrams." |
@@ -26,11 +26,14 @@ A ruby program for checking if two words or phrases are anagrams or 'antigrams' 
 
 ## Setup/Installation Requirements
 
-*
+* Download/clone the repository
+* Open a terminal/command line and navigate to the repo folder.
+* Run the command 'bundle install'
+* Run the command 'ruby anagrams_and_antigrams_script.rb'
 
 ## Known Bugs
 
-There are no known bugs at this time.
+The words.txt file used for checking if words are valid does not contain the plural form of many words. If the plural form of a word in an inputted phrase is not just the singular form followed by an 's', the program may find the phrase invalid.
 
 ## Support and contact details
 
@@ -38,7 +41,7 @@ If you find a bug, run into any issues, or have questions, ideas or concerns ple
 
 ## Technologies Used
 
-*
+* ruby (gems: rspec, pry, colorize; methods: File.readlines) 
 
 ### License
 
