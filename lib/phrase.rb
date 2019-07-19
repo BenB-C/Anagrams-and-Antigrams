@@ -1,3 +1,5 @@
+require 'colorize'
+
 class Phrase
   attr_reader(:text, :letter_frequencies, :is_valid, :letters_in_text, :has_multiple_words)
 
@@ -23,21 +25,21 @@ class Phrase
 
   def anagram(otherPhrase)
     if (!@is_valid) || (!otherPhrase.is_valid)
-      return "You need to input actual words!"
+      return "You need to input actual words!".colorize(:light_yellow)
     end
 
     descriptor = (@has_multiple_words || otherPhrase.has_multiple_words) ? "phrases" : "words"
 
     if @letters_in_text & otherPhrase.letters_in_text == []
-      return "These #{descriptor} have no letter matches and are antigrams."
+      return "These #{descriptor} have no letter matches and are antigrams.".colorize(:light_magenta)
     end
 
     @letter_frequencies.each do |letter, frequency|
       if frequency != otherPhrase.letter_frequencies[letter]
-        return "These #{descriptor} are not anagrams."
+        return "These #{descriptor} are not anagrams.".colorize(:light_red)
       end
     end
 
-    "These #{descriptor} are anagrams."
+    "These #{descriptor} are anagrams.".colorize(:light_green)
   end
 end
