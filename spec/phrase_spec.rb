@@ -9,10 +9,10 @@ describe('Phrase#anagram') do
     expect(phrase1.anagram(phrase2)).to(eq("These words are anagrams."))
   end
 
-  it('Returns "These words are not anagrams." when object is "dog" and argument is "bog"') do
+  it('If two phrases are not anagrams, returns how many letters from the argument are actual matches with the receiver.') do
     phrase1 = Phrase.new("dog")
     phrase2 = Phrase.new("bog")
-    expect(phrase1.anagram(phrase2)).to(eq("These words are not anagrams."))
+    expect(phrase1.anagram(phrase2)).to(eq("These words aren't anagrams but 2 letters match: g, o."))
   end
 
   it('Returns "These words are anagrams." when object is "Tea" and argument is "Eat"') do
@@ -61,5 +61,17 @@ describe('Phrase#anagram') do
     phrase1 = Phrase.new("Drmtr")
     phrase2 = Phrase.new("Drt rm")
     expect(phrase1.anagram(phrase2)).to(eq("You need to input actual words!"))
+  end
+
+  it('If two phrases are not anagrams, returns how many letters from the argument are actual matches with the receiver.') do
+    phrase1 = Phrase.new("cat")
+    phrase2 = Phrase.new("batty")
+    expect(phrase1.anagram(phrase2)).to(eq("These words aren't anagrams but 2 letters match: a, t."))
+  end
+
+  it('If two phrases are not anagrams, returns how many letters from the argument are actual matches with the receiver.') do
+    phrase1 = Phrase.new("catty mac cat face")
+    phrase2 = Phrase.new("batty mac bat face")
+    expect(phrase1.anagram(phrase2)).to(eq("These words aren't anagrams but 13 letters match: a, a, a, a, c, c, e, f, m, t, t, t, y."))
   end
 end
