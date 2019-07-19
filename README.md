@@ -20,7 +20,7 @@ A ruby program for checking if two words or phrases are anagrams or 'antigrams' 
 | If words aren't anagrams, determines whether they are actually antigrams. | "hi", "bye" | "These words have no letter matches and are antigrams." |
 | Accounts for multiple words being anagrams. | "Dormitory", "Dirty room" | "These phrases are anagrams." |
 | Accounts for multiple words being anagrams. | "Voices rant on", "Conversation" | "These phrases are anagrams." |
-| Accounts for multiple words being antigrams. | "Voices rant on", "" | "These phrases have no letter matches and are antigrams." |
+| Accounts for multiple words being antigrams. | "A cat ate", "My dog" | "These phrases have no letter matches and are antigrams." |
 | Rejects multiple words that do not contain vowels or y. | "Drmtr", "Drt rm" | "You need to input actual words!" |
 
 
@@ -38,7 +38,7 @@ If you find a bug, run into any issues, or have questions, ideas or concerns ple
 
 ## Technologies Used
 
-* 
+*
 
 ### License
 
