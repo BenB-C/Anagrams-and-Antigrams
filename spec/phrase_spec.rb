@@ -8,4 +8,10 @@ describe('Phrase#anagram') do
     phrase2 = Phrase.new("bury")
     expect(phrase1.anagram(phrase2)).to(eq("These words are anagrams"))
   end
+
+  it('Returns "These words are not anagrams" when object is "dog" and argument is "bog"') do
+    phrase1 = Phrase.new("dog")
+    phrase2 = Phrase.new("bog")
+    expect(phrase1.anagram(phrase2)).to(eq("These words are not anagrams"))
+  end
 end
