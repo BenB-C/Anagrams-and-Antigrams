@@ -72,6 +72,6 @@ describe('Phrase#anagram') do
   it('If two phrases are not anagrams, returns how many letters from the argument are actual matches with the receiver.') do
     phrase1 = Phrase.new("catty mac cat face")
     phrase2 = Phrase.new("batty mac bat face")
-    expect(phrase1.anagram(phrase2)).to(eq("These words aren't anagrams but 13 letters match: a, a, a, a, c, c, e, f, m, t, t, t, y."))
+    expect(phrase1.anagram(phrase2)).to(eq("These phrases aren't anagrams but 13 letters match: a, a, a, a, c, c, e, f, m, t, t, t, y."))
   end
 end

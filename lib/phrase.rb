@@ -4,7 +4,7 @@ class Phrase
   def initialize(text)
     @text = text.downcase
     @letter_frequencies = Hash.new { |hash, key| hash[key] = 0 }
-    ('a'..'z').each { |letter| @letter_frequencies[letter] }
+    # ('a'..'z').each { |letter| @letter_frequencies[letter] }
     @letters_in_text = []
     @has_multiple_words = false
     @text.split('').each do |letter|
@@ -28,16 +28,26 @@ class Phrase
 
     descriptor = (@has_multiple_words || otherPhrase.has_multiple_words) ? "phrases" : "words"
 
-    if @letters_in_text & otherPhrase.letters_in_text == []
-      return "These #{descriptor} have no letter matches and are antigrams."
-    end
-
+    matching_letters = []
+    are_anagrams = true
     @letter_frequencies.each do |letter, frequency|
-      if frequency != otherPhrase.letter_frequencies[letter]
-        return "These #{descriptor} are not anagrams."
+      otherFrequency = otherPhrase.letter_frequencies[letter]
+      if otherFrequency
+        are_anagrams = are_anagrams & (frequency == otherFrequency)
+        count = [frequency, otherFrequency].min
+        matching_letters += [letter] * count
+      else
+        are_anagrams = false
       end
     end
-
-    "These #{descriptor} are anagrams."
+    matching_letters.sort!
+    
+    if matching_letters.length == 0
+      "These #{descriptor} have no letter matches and are antigrams."
+    elsif are_anagrams
+      "These #{descriptor} are anagrams."
+    else
+      "These #{descriptor} aren't anagrams but #{matching_letters.length} letters match: #{matching_letters.join(', ')}."
+    end
   end
 end
