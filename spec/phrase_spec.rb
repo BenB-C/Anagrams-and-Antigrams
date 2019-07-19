@@ -20,4 +20,16 @@ describe('Phrase#anagram') do
     phrase2 = Phrase.new("Tea")
     expect(phrase1.anagram(phrase2)).to(eq("These words are anagrams"))
   end
+
+  it('Returns "You need to input actual words!" when object is "twx" and argument is "ruby"') do
+    phrase1 = Phrase.new("twx")
+    phrase2 = Phrase.new("ruby")
+    expect(phrase1.anagram(phrase2)).to(eq("You need to input actual words!"))
+  end
+
+  it('Returns "You need to input actual words!" when object is "twix" and argument is "rpg"') do
+    phrase1 = Phrase.new("twx")
+    phrase2 = Phrase.new("ruby")
+    expect(phrase1.anagram(phrase2)).to(eq("You need to input actual words!"))
+  end
 end
