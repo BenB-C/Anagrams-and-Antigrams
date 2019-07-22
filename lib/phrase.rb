@@ -1,7 +1,7 @@
 require 'json'
 
 class Phrase
-  attr_reader(:words, :is_valid, :letter_frequencies)
+  attr_reader(:words, :is_valid, :letter_frequencies, :text)
 
   @@dictionary_array = File.readlines('words.txt').map { |line| line.strip }
   @@dictionary_hash = JSON.parse(File.read('words_dictionary.json'))
@@ -26,7 +26,7 @@ class Phrase
     else
       descriptor = (words.length > 1 || otherPhrase.words.length > 1) ? "phrases" : "words"
       matching_letters = []
-      are_anagrams = true
+      are_anagrams = @text.length == otherPhrase.text.length
       letter_frequencies.each do |letter, frequency|
         otherFrequency = otherPhrase.letter_frequencies[letter]
         if otherFrequency

@@ -74,6 +74,18 @@ describe('Phrase#anagram') do
     phrase2 = Phrase.new("batty mac bat face")
     expect(phrase1.anagram(phrase2)).to(eq("These phrases aren't anagrams but 13 letters match: a, a, a, a, c, c, e, f, m, t, t, t, y."))
   end
+
+  it('If two phrases are not anagrams, returns how many letters from the argument are actual matches with the receiver.') do
+    phrase1 = Phrase.new("hello")
+    phrase2 = Phrase.new("hello world")
+    expect(phrase1.anagram(phrase2)).to(eq("These phrases aren't anagrams but 5 letters match: e, h, l, l, o."))
+  end
+
+  it('If two phrases are not anagrams, returns how many letters from the argument are actual matches with the receiver.') do
+    phrase1 = Phrase.new("a")
+    phrase2 = Phrase.new("ab")
+    expect(phrase1.anagram(phrase2)).to(eq("These words aren't anagrams but 1 letters match: a."))
+  end
 end
 
 describe('Phrase#palindrome?') do
